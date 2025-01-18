@@ -5,9 +5,11 @@ const geolocation = require("geolocation");
 var request = require("request");
 const app = express();
 const PORT = 3000;
+const cors = require("cors");
 
 // Middleware
 app.use(bodyParser.json());
+app.use(cors());
 
 // Proxy endpoint
 app.post("/proxy", async (req, res) => {
