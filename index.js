@@ -132,7 +132,7 @@ Please make sure your interpretations are clear, concise, and grounded in the po
 
 Strictly avoid using tables and other unnecessary information in the response
 
-
+Add Suitable emojis in all the major bullets
 ${JSON.stringify(data)}
 `;
 
@@ -181,6 +181,7 @@ Provide clear Do’s and Don’ts based on the individual’s planetary placemen
 Highlight behavioral aspects that need to be avoided (e.g., avoid taking impulsive decisions during Mercury retrograde, or refrain from excess socializing if Saturn is in the 12th house).
 Suggest positive actions that align with the individual’s astrological strengths (e.g., engage in intellectual activities if Mercury is strong, or focus on creativity if Venus is prominent).
 
+Add Suitable emojis in all the major bullets
 
 ${JSON.stringify(data)}
 `;
@@ -229,7 +230,7 @@ Sleep Content:
 Suggest sleep routines tailored to the person’s needs based on planetary influences. For instance, if the person’s Sun or Moon placement affects their sleep cycle, offer advice on the best times to sleep or the ideal environment for rest.
 Provide tips on how to enhance sleep quality using astrological remedies, such as sleeping with specific gemstones or keeping the room aligned with favorable planetary energies.
 
-
+Add Suitable emojis in all the major bullets
 ${JSON.stringify(data)}
 `;
 
