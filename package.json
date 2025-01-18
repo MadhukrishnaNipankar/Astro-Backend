@@ -1,5 +1,14 @@
 {
+  "name": "ASTRO",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
+    "@google/generative-ai": "^0.21.0",
     "axios": "^1.7.9",
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
@@ -8,5 +17,9 @@
     "geolocation": "^0.2.0",
     "node-fetch": "^3.3.2",
     "request": "^2.88.2"
-  }
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
