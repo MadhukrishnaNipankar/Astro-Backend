@@ -87,7 +87,7 @@ function formatDateTime(data) {
 }
 
 // New API for GET /getplanets
-app.get("/getplanets", async (req, res) => {
+app.post("/getplanets", async (req, res) => {
   const { name, dateOfBirth, time, gender, state, city } = req.body;
 
   if (!name || !dateOfBirth || !time || !gender || !state || !city) {
