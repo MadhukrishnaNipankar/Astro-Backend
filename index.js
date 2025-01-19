@@ -114,51 +114,25 @@ app.post("/get-kundali", async (req, res) => {
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
   const prompt = `
- Based on the provided planetary data for the person’s birth chart, return the output as a valid JSON object with the following strict structure. The response should have exactly five main parts: \`career\`, \`relationships\`, \`personalGrowth\`, \`familyAndSocialConnections\`, and \`kundliOverview\`. Each section can include content as lists or bullet points to enhance readability.
+  Using the below planetary data, generate a comprehensive Kundali (birth chart) covering the 12 houses. Offer insights on the following aspects:
 
-The JSON structure should look like this:
-{
-[
-  {
-    "title": "Career",
-    "data": {
-      "overview": "string",
-      "recommendation": "Recommendations here"
-    }
-  },
-  {
-    "title": "Relationships",
-    "data": {
-      "overview": "string",
-      "recommendation": "Recommendations here"
-    }
-  },
-  {
-    "title": "Personal Growth",
-    "data": {
-      "overview": "string",
-      "recommendation": "Recommendations here"
-    }
-  },
-  {
-    "title": "Family and Social Connections",
-    "data": {
-      "overview": "string",
-      "recommendation": "Recommendations here"
-    }
-  }
-]
-}
+Career: Based on the position of planets in relevant houses and their signs, give insights into the person's career path, strengths, and potential challenges. Mention any favorable planetary aspects for career growth or struggles.
 
-### Instructions for the LLM:
-1. **Content Style:** Ensure each section has an \`overview\` or \`summary\` to provide a general idea, followed by actionable \`recommendations\` or \`keyPoints\` in bullet points.
-2. **Formatting:** Return only valid JSON, adhering strictly to the given structure. Ensure all fields are included, even if the value is empty.
-3. **Contextual Accuracy:** Base the recommendations and insights on the individual’s planetary positions and astrological aspects. Provide actionable, relevant, and easy-to-understand suggestions.
-4. **Emojis:** Use emojis in string values to enhance readability and user engagement (e.g., 💼 for career, ❤️ for relationships, 🌟 for personal growth, 🏡 for family, and ✨ for the kundli overview).
+Relationships: Provide insights into personal relationships, including family, romantic, and social connections. Highlight any planets in the 7th house (relationships) or aspects that might influence love life, friendships, or family dynamics.
 
-Use this format strictly, and make the output user-friendly while being concise and actionable. Strictly start response with { and end with } ONLY. Don't include characters like \n or \r or \t. Remeber it should be perfectly like a JSON data string which we can parse afterwards. 
+Personal Growth: Based on the positions of the planets in the houses, interpret the person's potential for self-growth and development. Address any planetary influences in the 1st house (self) or aspects that might encourage personal transformation or indicate areas for improvement.
 
-THIS IS THE DATA TO REFER - 
+Family and Social Connections: Analyze the planetary influences on family life, including potential challenges in home life or positive influences for social harmony. Mention planets in the 4th house (home) and aspects related to social interactions.
+
+Kundali Overview: Offer a holistic view of the Kundali with a focus on how each planet in each house might influence the person's life journey. Ensure that the full-degree and normalized degree of each planet in relation to its house and sign are considered.
+
+Daily and Monthly Horoscope: Provide short daily and monthly horoscope insights based on the current transiting positions of the planets. Highlight key moments for the individual’s career, relationships, health, and spiritual life during the time period.
+
+Please make sure your interpretations are clear, concise, and grounded in the positions and movements of the planets. Provide actionable advice that the individual can apply in their daily life
+
+Strictly avoid using tables and other unnecessary information in the response
+
+Add Suitable emojis in all the major bullets
 ${JSON.stringify(data)}
 `;
 
@@ -190,39 +164,25 @@ app.post("/get-ai-recommendations", async (req, res) => {
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
   const prompt = `
-  Using the provided planetary data, return the output as a valid JSON object with the following strict structure. The response should have exactly three main parts: \`gemstones\`, \`poojaRecommendations\`, and \`kundliOverview\`. Each section can include content as lists or bullet points to enhance readability.
+  Based on the provided planetary data for the person’s birth chart, offer personalized recommendations as follows:
 
-The JSON structure should look like this:
-{
-[
-  {
-    "title": "Gemstones",
-    "data": {
-      "overview": "string",
-      "recommendation": "Recommendations here"
-    }
-  },
-  {
-    "title": "Pooja Recommendations",
-    "data": {
-      "overview": "string",
-      "recommendation": "Recommendations here"
-    }
-  }
-]
-}
+Gemstone Suggestions:
 
-### Instructions for the LLM:
-1. **Content Style:** Ensure each section has an \`overview\` or \`summary\` to provide a general idea, followed by actionable \`recommendations\` or \`keyPoints\` in bullet points.
-2. **Formatting:** Return only valid JSON, adhering strictly to the given structure. Ensure all fields are included, even if the value is empty.
-3. **Contextual Accuracy:** Base the suggestions and insights on the individual’s planetary positions and astrological aspects. Provide actionable, relevant, and easy-to-understand suggestions.
-4. **Emojis:** Use emojis in string values to enhance readability and user engagement (e.g., 💎 for gemstones, 🕉️ for pooja recommendations, and ✨ for the kundli overview).
-5. **Gemstone Recommendations:** Include details like the gemstone name, its purpose (e.g., enhancing Venus' energy), and the reason (e.g., Venus signifies love and creativity in the chart).
-6. **Pooja Recommendations:** Mention specific rituals, their purpose (e.g., strengthening Mercury), and the reason for their significance.
+Provide personalized gemstone recommendations that align with the person's astrological placements. Mention which gemstones will enhance beneficial planetary energies and mitigate any adverse influences.
+For each gemstone, explain its importance, benefits, and how it relates to the individual's unique planetary alignments (e.g., if Venus is strong, recommend a diamond, or if Saturn is malefic, suggest a blue sapphire).
+Pooja (Rituals) Recommendations:
 
-Use this format strictly, and make the output user-friendly while being concise and actionable. Strictly start response with { and end with } ONLY. Don't include characters like \n or \r or \t. Remember it should be perfectly like a JSON data string which we can parse afterward.
+Suggest specific pooja (rituals) or prayers based on planetary positions. These rituals should focus on strengthening favorable planets or neutralizing challenging ones.
+Include explanations on the importance and benefits of each recommended ritual (e.g., for Rahu or Ketu, recommend a specific pooja to mitigate their effects, or for the Moon, suggest a ritual to enhance mental peace and emotional stability).
+Clarify the proper way to conduct these rituals (e.g., specific mantras, timings, and location).
+Do’s and Don’ts:
 
-THIS IS THE DATA TO REFER - 
+Provide clear Do’s and Don’ts based on the individual’s planetary placements.
+Highlight behavioral aspects that need to be avoided (e.g., avoid taking impulsive decisions during Mercury retrograde, or refrain from excess socializing if Saturn is in the 12th house).
+Suggest positive actions that align with the individual’s astrological strengths (e.g., engage in intellectual activities if Mercury is strong, or focus on creativity if Venus is prominent).
+
+Add Suitable emojis in all the major bullets
+
 ${JSON.stringify(data)}
 `;
 
@@ -234,7 +194,7 @@ ${JSON.stringify(data)}
 
     return res.status(200).json({
       error: false,
-      data: JSON.parse(result.response.text()),
+      data: result.response.text(),
     });
   } catch (error) {
     console.error("Error generating content:", error);
@@ -254,46 +214,23 @@ app.post("/get-spiritual-content", async (req, res) => {
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
   const prompt = `
-  Using the provided planetary data, return the output as a valid JSON object with the following strict structure. The response should have exactly three main parts: \`meditationSuggestions\`, \`workoutSuggestions\`, and \`sleepContent\`. Each section can include an \`overview\` and detailed \`recommendations\` in bullet points to enhance readability.
+  Using the provided planetary data, offer tailored spiritual content that aligns with the person's horoscope insights. The content should focus on:
 
-The JSON structure should look like this:
+Meditation Suggestions:
 
-{
-[
-  {
-    "title": "Meditation Suggestions",
-    "data": {
-      "overview": "string",
-      "recommendation": "Recommendations here"
-    }
-  },
-  {
-    "title": "Workout Suggestions",
-    "data": {
-      "overview": "string",
-      "recommendation": "Recommendations here"
-    }
-  },
-  {
-    "title": "Sleep Content",
-    "data": {
-      "overview": "string",
-      "recommendation": "Recommendations here"
-    }
-  }
-]
-}
+Recommend specific meditation practices based on the individual's planetary positions. Focus on meditations that correspond to the person’s spiritual needs or areas of emotional and mental growth.
+For example, if the Moon’s position suggests emotional turbulence, recommend calming meditation practices, or if Mars is strong, suggest dynamic, energizing meditations.
+Include tips for better focus or relaxation based on the planetary influences.
+Workout Suggestions:
 
-### Instructions for the LLM:
-1. **Content Style:** Ensure each section has an \`overview\` to provide a general idea, followed by actionable \`recommendations\` in bullet points for clarity.
-2. **Formatting:** Return only valid JSON, adhering strictly to the given structure. Ensure all fields are included, even if the value is empty.
-3. **Contextual Accuracy:** Base the suggestions on the individual’s planetary positions and astrological insights. Provide actionable, relevant, and easy-to-follow advice.
-4. **Emojis:** Use emojis in string values to enhance readability and user engagement (e.g., 🧘 for meditation, 🏋️ for workouts, and 😴 for sleep content).
+Offer workout suggestions that complement the person’s astrological strengths and weaknesses. For example, if the person has strong fire elements (like a prominent Mars), suggest more intense, physically demanding workouts to channel their energy effectively.
+For those with strong Earth or Water elements, offer gentle exercises like yoga or tai chi, which are designed to balance energies and maintain peace.
+Sleep Content:
 
-Use this format strictly, and make the output user-friendly while being concise and actionable. Strictly start response with { and end with } ONLY. Don't include characters like \n or \r or \t. Remeber it should be perfectly like a JSON data string which we can parse afterwards. 
+Suggest sleep routines tailored to the person’s needs based on planetary influences. For instance, if the person’s Sun or Moon placement affects their sleep cycle, offer advice on the best times to sleep or the ideal environment for rest.
+Provide tips on how to enhance sleep quality using astrological remedies, such as sleeping with specific gemstones or keeping the room aligned with favorable planetary energies.
 
-THIS IS THE DATA TO REFER - 
-
+Add Suitable emojis in all the major bullets
 ${JSON.stringify(data)}
 `;
 
@@ -337,7 +274,7 @@ Consider the following while crafting your response:
 - Maintain a friendly and professional tone.
 
 Output a response that matches the user’s query, ensuring accuracy and depth in the explanation.
-The response should be short and crisp also try to text like a human, don't use markdown
+The response should be short and crisp also try to text like a human, don't use markdown, maximum 3-4 lines is enough if not needed more.
 `;
 
   console.log("Chat prompt:", prompt);
