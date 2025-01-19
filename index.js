@@ -337,7 +337,7 @@ Consider the following while crafting your response:
 - Maintain a friendly and professional tone.
 
 Output a response that matches the user’s query, ensuring accuracy and depth in the explanation.
-The response should be short and crisp also try to text like a human, don't use markdown, maximum 3-4 lines is enough if not needed more.
+The response should be short and crisp also try to text like a human, don't use markdown
 `;
 
   console.log("Chat prompt:", prompt);
