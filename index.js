@@ -252,6 +252,50 @@ ${JSON.stringify(data)}
     });
   }
 });
+
+app.post("/chat-ai", async (req, res) => {
+  const { data } = req.body; 
+  console.log("Chat input received:", data);
+
+  const genAI = new GoogleGenerativeAI(
+    "AIzaSyAgGyKAs-nJPqgczd7fOt067M1xubA6ozY"
+  );
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+  // Chat-specific prompt
+  const prompt = `
+You are an advanced conversational AI specializing in astrology, gemstones, rituals, and personalized guidance. Respond to user queries in a conversational and insightful manner.
+
+Input: "${data}"
+
+Consider the following while crafting your response:
+- Be concise yet detailed enough to provide actionable advice.
+- Use emojis sparingly but meaningfully to make the response engaging (e.g., 💎 for gemstones, 🕉️ for rituals, or 🌟 for astrological tips).
+- Maintain a friendly and professional tone.
+
+Output a response that matches the user’s query, ensuring accuracy and depth in the explanation.
+`;
+
+  console.log("Chat prompt:", prompt);
+
+  try {
+    const result = await model.generateContent(prompt);
+    console.log("Chat response:", result.response.text());
+
+    return res.status(200).json({
+      error: false,
+      data: result.response.text(),
+    });
+  } catch (error) {
+    console.error("Error generating chat response:", error);
+    return res.status(400).json({
+      error: true,
+      errorMessage:
+        error.message || "An error occurred while processing the chat input.",
+    });
+  }
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Proxy server running at http://localhost:${PORT}`);
