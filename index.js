@@ -254,7 +254,7 @@ ${JSON.stringify(data)}
 });
 
 app.post("/chat-ai", async (req, res) => {
-  const { data } = req.body; 
+  const { data } = req.body;
   console.log("Chat input received:", data);
 
   const genAI = new GoogleGenerativeAI(
@@ -274,6 +274,7 @@ Consider the following while crafting your response:
 - Maintain a friendly and professional tone.
 
 Output a response that matches the user’s query, ensuring accuracy and depth in the explanation.
+The response should be short and crisp also try to text like a human, don't use markdown
 `;
 
   console.log("Chat prompt:", prompt);
